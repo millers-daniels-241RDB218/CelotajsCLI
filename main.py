@@ -1,6 +1,7 @@
 import requests
 import os
 from hashtable import HashTable
+from stack import Stack
 
 URL = "https://www.celotajs.lv/lv/c/wrth" #Konstants, NEAIZTIKT
 
@@ -9,6 +10,7 @@ url = URL
 state = 'main'
 previousState = ''
 running = True
+history = Stack()
 
 def clearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -20,7 +22,7 @@ while(running):
         #      MAIN MENU      #
         #######################
         case 'main':
-            print('Meklēt\nNesen skatīti\nFavorīti\nBeidzēt')
+            print('1) Meklēt\n2) Nesen skatītie\n3) Favorīti\n4) Iziet')
             userInput = 0
             try:
                 userInput = int(input())
@@ -52,7 +54,7 @@ while(running):
         #     SEARCH MENU     #
         #######################
         case 'search':
-            print('Dabas objekti\nBaltijas kult\nKulturas zīme\nAtpakaļ')
+            print('1) Dabas objekti\n2) Baltijas kultūra\n3) Kulturas zīme "Latvijas mantojums"\n4) Atpakaļ')
 
             userInput = 0
             try:
@@ -89,7 +91,7 @@ while(running):
         #     NATURE MENU     #
         #######################         
         case 'nature':
-            print('Dabas vērošas vietas\nDabas pieminekļi\nDabas teritoriajs\nDabas parki, dārzi un dendrāji\natpakal')
+            print('1) Dabas vērošanas vietas\n2) Dabas pieminekļi\n3) Dabas teritorijas\n4) Dabas parki, dārzi un dendrāji\n5) Atpakal')
 
             userInput = 0
             try:
@@ -128,7 +130,7 @@ while(running):
                     clearTerminal()
         
         case 'nature/observation':
-            print('Dabas takas\nskatu torni\nskatu vietas\ndzivnieku, putnnu un augu versosasnas vietas\natpakal')
+            print('1) Dabas takas\n2) Skatu torņi\n3) Skatu vietas\n4) Dzīvnieku, putnu un augu vērošanas vietas\n5) Atpakal')
 
             userInput = 0
             try:
@@ -170,7 +172,7 @@ while(running):
                     clearTerminal()
 
         case 'nature/sights':
-            print('akmeņi\natsegumi\navoti\nkarsta kritenes\nkāpas\nkoki\nūdenskritumi\nreljefafromas\natpakal')
+            print('1) Akmeņi\n2) Atsegumi\n3) Avoti\n4) Karsta kritenes\n5) Kāpas\n6) Koki\n7) Ūdenskritumi\n8) Reljefa fromas\n9) Atpakal')
 
             userInput = 0
             try:
@@ -228,7 +230,7 @@ while(running):
 
 
         case 'nature/natural/areas':
-            print('Ezeri\nJūras krasta posms\nMeži\nPurvi\nPļavas\nSalas\nUpes\nCitas dabas teritorijas\nBiotopi\natpakal')
+            print('1) Ezeri\n2) Jūras krasta posms\n3) Meži\n4) Purvi\n5) Pļavas\n6) Salas\n7) Upes\n8) Citas dabas teritorijas\n9) Biotopi\n10) Atpakal')
 
             userInput = 0
             try:
@@ -294,7 +296,7 @@ while(running):
         #    CULTURE MENU     #
         #######################
         case 'culture':
-            print('Senās vēsturiskās vietas\nVēsturiskie un mūsdienu centri\nPilis un muižas\nBaznīcas\nMuzeji\nIevērojamas celtnes\nIndustriālais mantojums\nIzziņas vietas\nPiemiņas vietas\natpakal')
+            print('1) Senās vēsturiskās vietas\n2) Vēsturiskie un mūsdienu centri\n3) Pilis un muižas\n4) Baznīcas\n5) Muzeji\n6) Ievērojamas celtnes\n7) Industriālais mantojums\n8) Izziņas vietas\n9) Piemiņas vietas\n10) Atpakal')
 
             userInput = 0
             try:
