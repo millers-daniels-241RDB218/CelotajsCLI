@@ -18,6 +18,9 @@ Lai to ieinstalētu, savā terminālī ieraksti:
 Tā kā tiek ievākts liels datu apjoms no mājaslapas `HTML` formā, lai to apstrādātu tiek izmantota bibliotēka `beautifulsoup4`.
 Lai to ieinstalētu, savā terminālī ieraksti:  
 `pip install beautifulsoup4`
+### Rīka palaišana
+Lai palaistu rīku, sava terminālī, kura ceļš ir rīka pirmkoda direktoriju, uz veikt komandu:  
+`python ./main.py`
 ## Izmantotās datu struktūras
 ### Node:
 **Node** implementācija ir ierakstā 'Node' objekta implementācija, kas sastāv no `value` un `next` laukiem, kas tiek izmantots `Stack` un `LinkedList` implementācijās.
