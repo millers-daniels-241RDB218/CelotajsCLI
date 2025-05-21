@@ -1,5 +1,5 @@
 class Destination:
-    def __init__(self, url, name, country, category):
+    def __init__(self, url, name, country):
         self.url = url
         self.name = name
         self.country = country

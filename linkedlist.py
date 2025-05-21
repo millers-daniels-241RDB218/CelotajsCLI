@@ -22,7 +22,7 @@ class LinkedList:
     def contains(self, destination):
         current = self.head
         while current:
-            if current.destination == destination:
+            if current.value == destination:
                 return True
             current = current.next
         return False

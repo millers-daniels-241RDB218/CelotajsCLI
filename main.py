@@ -370,34 +370,35 @@ while(running):
         #     OTHER MENUs     #
         #######################
         case 'searching':
-            
+            firstloop= True
+            if firstloop:
+                page = requests.get(url)
+                if page.status_code == 200:
+                    print("Connected")
+                    page_contents = BeautifulSoup(page.content, "html.parser")
+                    celojumi = page_contents.find_all('tr', class_=['even','odd'])
 
-            page = requests.get(url)
-            if page.status_code == 200:
-                print("Connected")
-                page_contents = BeautifulSoup(page.content, "html.parser")
-                celojumi = page_contents.find_all('tr', class_=['even','odd'])
-                
-                for section in celojumi:
-                    for tag in section.find_all('td', class_="minimalCol alignCeter"):
-                        tag.decompose()
-                    for tag in section.find_all('div', style=['margin-top: .5em; margin-bottom: .2em;', 'margin-top: 5px; float: right; text-align: center;']):
-                        tag.decompose()
-                    for tag in section.find_all('div', class_='dotdotdot-txt'):
-                        tag.decompose()
-                        
-                    for tag in section.find_all('div'):
-                        a_tag = tag.find('a', href=True)
-                        if a_tag:
-                            url = a_tag['href']
-                        div = tag.find('div', style="float: left;")
-                        if div:
-                            country = div.get_text(strip=True)
-                        h3 = tag.find('h3')
-                        if h3:
-                            nosaukums = h3.get_text(strip=True)
-                        newDest = Destination('/'+re.sub(r'(\.\./)+', '', url), country, nosaukums, 0)
-                        destinationHT.add(newDest.url, newDest)
+                    for section in celojumi:
+                        for tag in section.find_all('td', class_="minimalCol alignCenter"):
+                            tag.decompose()
+                        for tag in section.find_all('div', style=['margin-top: .5em; margin-bottom: .2em;', 'margin-top: 5px; float: right; text-align: center;']):
+                            tag.decompose()
+                        for tag in section.find_all('div', class_='dotdotdot-txt'):
+                            tag.decompose()
+
+                        for tag in section.find_all('div'):
+                            a_tag = tag.find('a', href=True)
+                            if a_tag:
+                                Desturl = a_tag['href']
+                            div = tag.find('div', style="float: left;")
+                            if div:
+                                Destcountry = div.get_text(strip=True)
+                            h3 = tag.find('h3')
+                            if h3:
+                                Destnosaukums = h3.get_text(strip=True)
+                            newDest = Destination(URL +re.sub(r'(\.\./)+', '', Desturl), Destcountry, Destnosaukums)
+                            destinationHT.add(newDest.url, newDest)
+                        firstloop = False
                     
             randomDest = destinationHT.randomElement()
             print(str(randomDest))
@@ -417,14 +418,13 @@ while(running):
                         pass
                     favourite.append(randomDest)
                     print('Pievienots favorītiem!')
+                    clearTerminal()
                 case 2:
                     clearTerminal()
                     continue
                 case 3:
-                    previousState = state
-                    state = 'favorites'
+                    state = previousState
                     clearTerminal()
-                
                 case _:
                     clearTerminal()
         case 'recent': 
