@@ -17,6 +17,7 @@ destinationHT = HashTable(20)
 history = FixedSizeStack(5)
 favourite = LinkedList()
 firstloop= True
+repick = False
 
 def clearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -484,9 +485,12 @@ while(running):
                                 Destnosaukums = h3.get_text(strip=True)
                             newDest = Destination(URL +re.sub(r'(\.\./)+', '', Desturl), Destcountry, Destnosaukums)
                             destinationHT.add(newDest.url, newDest)
-                        firstloop = False
+                repick = True
+                firstloop = False
             clearTerminal()
-            randomDest = destinationHT.randomElement()
+            if repick:
+                randomDest = destinationHT.randomElement()
+                repick = False
             print(str(randomDest))
             history.push(randomDest)
             print('1) Pievienot favorītiem\n2) Cits galamērķis\n3) Atpakaļ')
@@ -506,8 +510,9 @@ while(running):
                     print('Pievienots favorītiem!')
                     clearTerminal()
                 case 2:
+                    repick = True
                     clearTerminal()
-                    continue
+                    pass
                 case 3:
                     state = previousState
                     clearTerminal()
@@ -520,9 +525,13 @@ while(running):
             state = previousState
             clearTerminal()
         
-        case 'favorite':
-
-            pass
+        case 'favorites':
+            print(favourite)
+            print('Lai aizietu atpakaļ uzspiediet jebkuru pogu!')
+            input()
+            state = previousState
+            clearTerminal()
+            
         case 'about':
             print('Daniels Millers\t\t241RDB218\nToms Graudums\t\t241RDB237\nElīza Anna Jansone\t241RDB013\nLai aizietu atpakaļ uzspiediet jebkuru pogu!')
             input()

@@ -63,7 +63,7 @@ class LinkedList:
         returnString = ''
         i = 0
         while current:
-            returnString += f'{i+1})---------------------\n{self.stack[-i]}\n'
+            returnString += f'{i+1})---------------------\n{current.value}\n'
             i += 1
             current = current.next
         return returnString    
