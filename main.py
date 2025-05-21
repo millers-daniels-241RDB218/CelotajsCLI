@@ -1,8 +1,9 @@
 import requests
+from bs4 import BeautifulSoup
 import os
 import destination
 from hashtable import HashTable
-from stack import Stack
+from stack import FixedSizeStack
 
 
 URL = "https://www.celotajs.lv/lv/c/wrth" #Konstants, NEAIZTIKT
@@ -12,7 +13,7 @@ url = URL
 state = 'main'
 previousState = ''
 running = True
-history = Stack()
+history = FixedSizeStack(5)
 
 def clearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
