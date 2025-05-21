@@ -3,7 +3,6 @@ class Destination:
         self.url = url
         self.name = name
         self.country = country
-        self.categories = [hash(category)]
 
     def __eq__(self, other):
         return hash(self.url) == hash(other.url) 
@@ -13,6 +12,3 @@ class Destination:
     
     def __hash__(self):
         return hash(self.url)
-    
-    def addCategory(self, category):
-        self.categories.append(hash(category))

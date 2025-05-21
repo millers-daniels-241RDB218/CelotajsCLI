@@ -1,19 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-import destination
+import re
+from destination import Destination
 from hashtable import HashTable
 from stack import FixedSizeStack
-from destination import re
 
 
-URL = "https://www.celotajs.lv/lv/c/wrth" #Konstants, NEAIZTIKT
-
-url = URL
+URL = "https://www.celotajs.lv/lv/" #Konstants, NEAIZTIKT
 
 state = 'main'
 previousState = ''
 running = True
+destinationHT = HashTable(20)
 history = FixedSizeStack(5)
 
 def clearTerminal():
@@ -126,7 +125,7 @@ while(running):
 
                 case 4:
                     previousState = state
-                    url = url + f'/{state}/parks'
+                    url = URL + f'c/wrth/{state}/parks'
                     state = 'searching'
                     clearTerminal()
 
@@ -150,25 +149,25 @@ while(running):
             match(userInput):
                 case 1:
                     previousState = state
-                    url = url + f'/{state}/trials'
+                    url = URL + f'c/wrth/{state}/trails'
                     state = 'searching'
                     clearTerminal()
 
                 case 2:
                     previousState = state
-                    url = url + f'/{state}/watchtower'
+                    url = URL + f'c/wrth/{state}/watchtower'
                     state = 'searching'
                     clearTerminal()
 
                 case 3:
                     previousState = state
-                    url = url + f'/{state}/places'
+                    url = URL + f'c/wrth/{state}/places'
                     state = 'searching'
                     clearTerminal()
 
                 case 4:
                     previousState = state
-                    url = url + f'/{state}/animals'
+                    url = URL + f'c/wrth/{state}/animals'
                     state = 'searching'
                     clearTerminal()
 
@@ -192,42 +191,42 @@ while(running):
             match(userInput):
                 case 1:
                     previousState = state
-                    url = URL + f'/{state}/rocks'
+                    url = URL + f'c/wrth/{state}/rocks'
                     state = 'searching'
                     clearTerminal()
                 case 2:
                     previousState = state
-                    url = URL + f'/{state}/outcrops'
+                    url = URL + f'c/wrth/{state}/outcrops'
                     state = 'searching'
                     clearTerminal()
                 case 3:
                     previousState = state
-                    url = URL + f'/{state}/springs'
+                    url = URL + f'c/wrth/{state}/springs'
                     state = 'searching'
                     clearTerminal()
                 case 4:
                     previousState = state
-                    url = URL + f'/{state}/sinkholes'
+                    url = URL + f'c/wrth/{state}/sinkholes'
                     state = 'searching'
                     clearTerminal()
                 case 5:
                     previousState = state
-                    url = URL + f'/{state}/dunes'
+                    url = URL + f'c/wrth/{state}/dunes'
                     state = 'searching'
                     clearTerminal()
                 case 6:
                     previousState = state
-                    url = URL + f'/{state}/trees'
+                    url = URL + f'c/wrth/{state}/trees'
                     state = 'searching'
                     clearTerminal()
                 case 7:
                     previousState = state
-                    url = URL + f'/{state}/waterfalls'
+                    url = URL + f'c/wrth/{state}/waterfall'
                     state = 'searching'
                     clearTerminal()
                 case 8:
                     previousState = state
-                    url = URL + f'/{state}/relief'
+                    url = URL + f'c/wrth/{state}/relief'
                     state = 'searching'
                     clearTerminal()
                 case 9:
@@ -250,47 +249,47 @@ while(running):
             match(userInput):
                 case 1:
                     previousState = state
-                    url = URL+f'/{state}/lakes'
+                    url = URL+f'c/wrth/{state}/lakes'
                     state = 'searching'
                     clearTerminal()
                 case 2:
                     previousState = state
-                    url = URL+f'/{state}/seaside'
+                    url = URL+f'c/wrth/{state}/seaside'
                     state = 'searching'
                     clearTerminal()
                 case 3:
                     previousState = state
-                    url = URL+f'/{state}/forests'
+                    url = URL+f'c/wrth/{state}/forests'
                     state = 'searching'
                     clearTerminal()
                 case 4:
                     previousState = state
-                    url = URL+f'/{state}/swamps'
+                    url = URL+f'c/wrth/{state}/swamps'
                     state = 'searching'
                     clearTerminal()
                 case 5:
                     previousState = state
-                    url = URL+f'/{state}/meadows'
+                    url = URL+f'c/wrth/{state}/meadows'
                     state = 'searching'
                     clearTerminal()
                 case 6:
                     previousState = state
-                    url = URL+f'/{state}/islands'
+                    url = URL+f'c/wrth/{state}/islands'
                     state = 'searching'
                     clearTerminal()
                 case 7:
                     previousState = state
-                    url = URL+f'/{state}/rivers'
+                    url = URL+f'c/wrth/{state}/rivers'
                     state = 'searching'
                     clearTerminal()
                 case 8:
                     previousState = state
-                    url = URL+f'/{state}/territory'
+                    url = URL+f'c/wrth/{state}/territory'
                     state = 'searching'
                     clearTerminal()
                 case 9:
                     previousState = state
-                    url = URL+f'/{state}/biotope'
+                    url = URL+f'c/wrth/{state}/biotope'
                     state = 'searching'
                     clearTerminal()
                 case 10:
@@ -316,47 +315,47 @@ while(running):
             match (userInput):
                 case 1:
                     previousState = state
-                    url = URL + f'/{state}/historical/sites'
+                    url = URL + f'c/wrth/{state}/historical/sites'
                     state = 'searching'
                     clearTerminal()
                 case 2:
                     previousState = state
-                    url = URL + f'/{state}/centre'
+                    url = URL + f'c/wrth/{state}/centre'
                     state = 'searching'
                     clearTerminal()
                 case 3:
                     previousState = state
-                    url = URL + f'/{state}/castles/manors'
+                    url = URL + f'c/wrth/{state}/castles/manors'
                     state = 'searching'
                     clearTerminal()
                 case 4:
                     previousState = state
-                    url = URL + f'/{state}/churches'
+                    url = URL + f'c/wrth/{state}/churches'
                     state = 'searching'
                     clearTerminal()
                 case 5:
                     previousState = state
-                    url = URL + f'/{state}/museums'
+                    url = URL + f'c/wrth/{state}/museums'
                     state = 'searching'
                     clearTerminal()
                 case 6:
                     previousState = state
-                    url = URL + f'/{state}/remarkable/building'
+                    url = URL + f'c/wrth/{state}/remarkable/building'
                     state = 'searching'
                     clearTerminal()
                 case 7:
                     previousState = state
-                    url = URL + f'/{state}/industrial'
+                    url = URL + f'c/wrth/{state}/industrial'
                     state = 'searching'
                     clearTerminal()
                 case 8:
                     previousState = state
-                    url = URL + f'/{state}/cognition'
+                    url = URL + f'c/wrth/{state}/cognition'
                     state = 'searching'
                     clearTerminal()
                 case 9:
                     previousState = state
-                    url = URL + f'/{state}/memorial'
+                    url = URL + f'c/wrth/{state}/memorial'
                     state = 'searching'
                     clearTerminal()
                 case 10:
@@ -376,10 +375,6 @@ while(running):
                 page_contents = BeautifulSoup(page.content, "html.parser")
                 celojumi = page_contents.find_all('tr', class_=['even','odd'])
                 
-                countryArray = []
-                urlArray = []
-                NosaukumuArray = []
-                
                 for section in celojumi:
                     for tag in section.find_all('td', class_="minimalCol alignCeter"):
                         tag.decompose()
@@ -390,21 +385,23 @@ while(running):
                         
                     for tag in section.find_all('div'):
                         a_tag = tag.find('a', href=True)
+                        if a_tag:
+                            url = a_tag['href']
                         div = tag.find('div', style="float: left;")
+                        if div:
+                            country = div.get_text(strip=True)
                         h3 = tag.find('h3')
-                        newDest = Destination('/'+re.sub(r'(../)+', '', url), div.get_text(strip=True), h3.get_text(strip=True))
+                        if h3:
+                            nosaukums = h3.get_text(strip=True)
+                        newDest = Destination('/'+re.sub(r'(\.\./)+', '', url), country, nosaukums, 0)
                         destinationHT.add(newDest.url, newDest)
                     
             randomDest = destinationHT.randomElement()
             print(str(randomDest))
-            historyStack.push(randomDest)
+            history.push(randomDest)
             input()
             state = previousState
-            vlearTerminal()
-            pass   
-                    
-            state = previousState
-            pass
+            clearTerminal()
         case 'recent': 
             #Have the screen display the contents of the stack
             #Have options for:
