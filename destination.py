@@ -8,7 +8,7 @@ class Destination:
         return hash(self.url) == hash(other.url) 
 
     def __str__(self):
-        return f'Name: {self.name}\nCountry: {self.country}\n Url: {self.url}'
+        return f'Nosaukums: {self.name}\nValsts: {self.country}\nSaite: {self.url}'
     
     def __hash__(self):
         return hash(self.url)

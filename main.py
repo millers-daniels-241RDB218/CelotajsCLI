@@ -16,6 +16,7 @@ running = True
 destinationHT = HashTable(20)
 history = FixedSizeStack(5)
 favourite = LinkedList()
+firstloop= True
 
 def clearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -27,7 +28,7 @@ while(running):
         #      MAIN MENU      #
         #######################
         case 'main':
-            print('1) Meklēt\n2) Nesen skatītie\n3) Favorīti\n4) Favorīti\n5) Iziet')
+            print('1) Meklēt\n2) Nesen skatītie\n3) Favorīti\n4) Par izstrādātājiem\n5) Iziet')
             userInput = 0
             try:
                 userInput = int(input())
@@ -86,8 +87,11 @@ while(running):
                 case 3:
                     previousState = state
                     url = url+ f'/{state}/heritage'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
 
                 case 4: 
                     state = 'main'
@@ -128,8 +132,11 @@ while(running):
                 case 4:
                     previousState = state
                     url = URL + f'c/wrth/{state}/parks'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
 
                 case 5: 
                     state = 'search'
@@ -152,26 +159,38 @@ while(running):
                 case 1:
                     previousState = state
                     url = URL + f'c/wrth/{state}/trails'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
 
                 case 2:
                     previousState = state
                     url = URL + f'c/wrth/{state}/watchtower'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
 
                 case 3:
                     previousState = state
                     url = URL + f'c/wrth/{state}/places'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
 
                 case 4:
                     previousState = state
                     url = URL + f'c/wrth/{state}/animals'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
 
                 case 5:
                     state = 'nature'
@@ -194,43 +213,67 @@ while(running):
                 case 1:
                     previousState = state
                     url = URL + f'c/wrth/{state}/rocks'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 2:
                     previousState = state
                     url = URL + f'c/wrth/{state}/outcrops'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 3:
                     previousState = state
                     url = URL + f'c/wrth/{state}/springs'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 4:
                     previousState = state
                     url = URL + f'c/wrth/{state}/sinkholes'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 5:
                     previousState = state
                     url = URL + f'c/wrth/{state}/dunes'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 6:
                     previousState = state
                     url = URL + f'c/wrth/{state}/trees'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 7:
                     previousState = state
                     url = URL + f'c/wrth/{state}/waterfall'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 8:
                     previousState = state
                     url = URL + f'c/wrth/{state}/relief'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 9:
                     state = 'nature'
                     clearTerminal()
@@ -252,48 +295,74 @@ while(running):
                 case 1:
                     previousState = state
                     url = URL+f'c/wrth/{state}/lakes'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 2:
                     previousState = state
                     url = URL+f'c/wrth/{state}/seaside'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 3:
                     previousState = state
                     url = URL+f'c/wrth/{state}/forests'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 4:
                     previousState = state
                     url = URL+f'c/wrth/{state}/swamps'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 5:
                     previousState = state
                     url = URL+f'c/wrth/{state}/meadows'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 6:
                     previousState = state
                     url = URL+f'c/wrth/{state}/islands'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 7:
                     previousState = state
                     url = URL+f'c/wrth/{state}/rivers'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 8:
                     previousState = state
                     url = URL+f'c/wrth/{state}/territory'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
                 case 9:
                     previousState = state
                     url = URL+f'c/wrth/{state}/biotope'
-                    state = 'searching'
                     clearTerminal()
+                    print("Savienojas...")
+                    firstloop = True
+                    state = 'searching'
+                    
                 case 10:
                     state = 'nature'
                     clearTerminal()
@@ -319,46 +388,64 @@ while(running):
                     previousState = state
                     url = URL + f'c/wrth/{state}/historical/sites'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 2:
                     previousState = state
                     url = URL + f'c/wrth/{state}/centre'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 3:
                     previousState = state
                     url = URL + f'c/wrth/{state}/castles/manors'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 4:
                     previousState = state
                     url = URL + f'c/wrth/{state}/churches'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 5:
                     previousState = state
                     url = URL + f'c/wrth/{state}/museums'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 6:
                     previousState = state
                     url = URL + f'c/wrth/{state}/remarkable/building'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 7:
                     previousState = state
                     url = URL + f'c/wrth/{state}/industrial'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 8:
                     previousState = state
                     url = URL + f'c/wrth/{state}/cognition'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 9:
                     previousState = state
                     url = URL + f'c/wrth/{state}/memorial'
                     state = 'searching'
+                    print("Savienojas...")
+                    firstloop = True
                     clearTerminal()
                 case 10:
                     state = 'search'
@@ -370,11 +457,10 @@ while(running):
         #     OTHER MENUs     #
         #######################
         case 'searching':
-            firstloop= True
             if firstloop:
+                destinationHT.clear()
                 page = requests.get(url)
                 if page.status_code == 200:
-                    print("Connected")
                     page_contents = BeautifulSoup(page.content, "html.parser")
                     celojumi = page_contents.find_all('tr', class_=['even','odd'])
 
@@ -399,7 +485,7 @@ while(running):
                             newDest = Destination(URL +re.sub(r'(\.\./)+', '', Desturl), Destcountry, Destnosaukums)
                             destinationHT.add(newDest.url, newDest)
                         firstloop = False
-                    
+            clearTerminal()
             randomDest = destinationHT.randomElement()
             print(str(randomDest))
             history.push(randomDest)
@@ -428,20 +514,19 @@ while(running):
                 case _:
                     clearTerminal()
         case 'recent': 
-            #Have the screen display the contents of the stack
-            #Have options for:
-            #Atpakaļ
-            #un atkal iereakstot skaitli, lai displayo to galamērķi...
-            pass
+            print(history)
+            print('Lai aizietu atpakaļ uzspiediet jebkuru pogu!')
+            input()
+            state = previousState
+            clearTerminal()
         
         case 'favorite':
-            #dosplay the linked list ;d
-            #tas pats, kas stack, burtiski
-            pass
 
+            pass
         case 'about':
-            print('Daniels Millers\t241RDB218\nToms Graudums\t241RDB237\nElīza Anna Jansone\t241RDB013\nLai aizietu atpakaļ uzspiediet jebkuru pogu!')
+            print('Daniels Millers\t\t241RDB218\nToms Graudums\t\t241RDB237\nElīza Anna Jansone\t241RDB013\nLai aizietu atpakaļ uzspiediet jebkuru pogu!')
             input()
+            clearTerminal()
             state = previousState
 
         case 'stop':

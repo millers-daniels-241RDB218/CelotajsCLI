@@ -24,7 +24,7 @@ class Stack:
     
     def __str__(self):
         returnString = ''
-        for i in self.stack:
+        for i in range(0, len(self.stack)):
             returnString += f'{i})\n{self.stack[-i]}\n'
         return returnString
     
@@ -58,6 +58,6 @@ class FixedSizeStack:
     
     def __str__(self):
         returnString = ''
-        for i in range(self.maxSize):
-            returnString += f'{i})\n{self.stack[-i]}\n'
+        for i in range(0,self.maxSize):
+            returnString += f'{i+1})---------------------\n{self.stack[-i]}\n'
         return returnString
