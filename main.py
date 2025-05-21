@@ -47,6 +47,10 @@ while(running):
                     state = 'favorites'
                     clearTerminal()
                 case 4:
+                    previousState = state
+                    state = 'about'
+                    clearTerminal()
+                case 5:
                     state = 'stop'
                     clearTerminal()
                 case _:
@@ -418,6 +422,11 @@ while(running):
             #dosplay the linked list ;d
             #tas pats, kas stack, burtiski
             pass
+
+        case 'about':
+            print('Daniels Millers\t241RDB218\nToms Graudums\t241RDB237\nElīza Anna Jansone\t241RDB013\nLai aizietu atpakaļ uzspiediet jebkuru pogu!')
+            input()
+            state = previousState
 
         case 'stop':
             running = False
