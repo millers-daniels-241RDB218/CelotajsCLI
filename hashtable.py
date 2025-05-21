@@ -1,4 +1,5 @@
 from node import NodeHT
+import random
 
 class HashTable:
     def __init__ (self, capacity):
@@ -54,3 +55,32 @@ class HashTable:
                 return
             current = current.next
         print("not found")
+    
+    def randomElement(self):
+        elements = []
+
+        for element in self.table:
+            current = element
+            while current:
+                elements.append(current.value)
+                current = current.next
+
+        if elements:
+            return random.choice(elements)
+        else:
+            return None
+
+
+    def contains(self, key):
+        try: 
+          self.find(key) 
+          return True
+        except KeyError: 
+          return False
+
+    def iter(self):
+        for element in self.table:
+          current = element
+          if current:
+            yield (current.key, current.value)
+            current = current.next

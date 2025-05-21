@@ -4,6 +4,7 @@ import os
 import destination
 from hashtable import HashTable
 from stack import FixedSizeStack
+from destination import re
 
 
 URL = "https://www.celotajs.lv/lv/c/wrth" #Konstants, NEAIZTIKT
@@ -389,18 +390,10 @@ while(running):
                         
                     for tag in section.find_all('div'):
                         a_tag = tag.find('a', href=True)
-                        if a_tag:
-                            url = a_tag['href']
-                            urlArray.append('/'+re.sub(r'(\.\./)+', '', url))
                         div = tag.find('div', style="float: left;")
-                        if div:
-                            countryArray.append(div.get_text(strip=True))
                         h3 = tag.find('h3')
-                        if h3:
-                            NosaukumuArray.append(h3.get_text(strip=True))
-                for i in range(0, len(countryArray)):
-                    newDest = Destination(urlArray[i], NosaukumuArray[i], countryArray[i], 1)
-                    destinationHT.add(newDest.url, newDest)
+                        newDest = Destination('/'+re.sub(r'(../)+', '', url), div.get_text(strip=True), h3.get_text(strip=True))
+                        destinationHT.add(newDest.url, newDest)
                     
             randomDest = destinationHT.randomElement()
             print(str(randomDest))
