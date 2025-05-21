@@ -5,15 +5,28 @@ class LinkedList:
         self.head = None
 
     def append(self, destination):
+        if self.contains(destination):
+            print(f"Destination '{destination.name}' jau ir sarakstā. Netika pievienots.")
+            return
+
         new_node = Node(destination)
         if not self.head:
             self.head = new_node
             return
+
         current = self.head
         while current.next:
             current = current.next
         current.next = new_node
 
+    def contains(self, destination):
+        current = self.head
+        while current:
+            if current.destination == destination:
+                return True
+            current = current.next
+        return False
+    
     def delete(self, url):
         current = self.head
         prev = None

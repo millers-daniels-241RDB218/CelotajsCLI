@@ -5,6 +5,7 @@ import re
 from destination import Destination
 from hashtable import HashTable
 from stack import FixedSizeStack
+from linkedlist import LinkedList
 
 
 URL = "https://www.celotajs.lv/lv/" #Konstants, NEAIZTIKT
@@ -14,6 +15,7 @@ previousState = ''
 running = True
 destinationHT = HashTable(20)
 history = FixedSizeStack(5)
+favourite = LinkedList()
 
 def clearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -98,7 +100,7 @@ while(running):
         #     NATURE MENU     #
         #######################         
         case 'nature':
-            print('1) Dabas vērošanas vietas\n2) Dabas pieminekļi\n3) Dabas teritorijas\n4) Dabas parki, dārzi un dendrāji\n5) Atpakal')
+            print('1) Dabas vērošanas vietas\n2) Dabas pieminekļi\n3) Dabas teritorijas\n4) Dabas parki, dārzi un dendrāji\n5) Atpakaļ')
 
             userInput = 0
             try:
@@ -137,7 +139,7 @@ while(running):
                     clearTerminal()
         
         case 'nature/observation':
-            print('1) Dabas takas\n2) Skatu torņi\n3) Skatu vietas\n4) Dzīvnieku, putnu un augu vērošanas vietas\n5) Atpakal')
+            print('1) Dabas takas\n2) Skatu torņi\n3) Skatu vietas\n4) Dzīvnieku, putnu un augu vērošanas vietas\n5) Atpakaļ')
 
             userInput = 0
             try:
@@ -179,7 +181,7 @@ while(running):
                     clearTerminal()
 
         case 'nature/sights':
-            print('1) Akmeņi\n2) Atsegumi\n3) Avoti\n4) Karsta kritenes\n5) Kāpas\n6) Koki\n7) Ūdenskritumi\n8) Reljefa fromas\n9) Atpakal')
+            print('1) Akmeņi\n2) Atsegumi\n3) Avoti\n4) Karsta kritenes\n5) Kāpas\n6) Koki\n7) Ūdenskritumi\n8) Reljefa fromas\n9) Atpakaļ')
 
             userInput = 0
             try:
@@ -237,7 +239,7 @@ while(running):
 
 
         case 'nature/natural/areas':
-            print('1) Ezeri\n2) Jūras krasta posms\n3) Meži\n4) Purvi\n5) Pļavas\n6) Salas\n7) Upes\n8) Citas dabas teritorijas\n9) Biotopi\n10) Atpakal')
+            print('1) Ezeri\n2) Jūras krasta posms\n3) Meži\n4) Purvi\n5) Pļavas\n6) Salas\n7) Upes\n8) Citas dabas teritorijas\n9) Biotopi\n10) Atpakaļ')
 
             userInput = 0
             try:
@@ -303,7 +305,7 @@ while(running):
         #    CULTURE MENU     #
         #######################
         case 'culture':
-            print('1) Senās vēsturiskās vietas\n2) Vēsturiskie un mūsdienu centri\n3) Pilis un muižas\n4) Baznīcas\n5) Muzeji\n6) Ievērojamas celtnes\n7) Industriālais mantojums\n8) Izziņas vietas\n9) Piemiņas vietas\n10) Atpakal')
+            print('1) Senās vēsturiskās vietas\n2) Vēsturiskie un mūsdienu centri\n3) Pilis un muižas\n4) Baznīcas\n5) Muzeji\n6) Ievērojamas celtnes\n7) Industriālais mantojums\n8) Izziņas vietas\n9) Piemiņas vietas\n10) Atpakaļ')
 
             userInput = 0
             try:
@@ -368,7 +370,8 @@ while(running):
         #     OTHER MENUs     #
         #######################
         case 'searching':
-            #you do the requesst thingy
+            
+
             page = requests.get(url)
             if page.status_code == 200:
                 print("Connected")
@@ -399,9 +402,31 @@ while(running):
             randomDest = destinationHT.randomElement()
             print(str(randomDest))
             history.push(randomDest)
-            input()
-            state = previousState
-            clearTerminal()
+            print('1) Pievienot favorītiem\n2) Cits galamērķis\n3) Atpakaļ')
+
+            userInput = 0
+            try:
+                userInput = int(input())
+            
+            except (ValueError):
+                print("notika kļūda, lūdzu ievadiet atkal\n")
+            match (userInput):
+                case 1:
+                    if favourite.contains(randomDest):
+                        print('Jau tika pievienots!')
+                        pass
+                    favourite.append(randomDest)
+                    print('Pievienots favorītiem!')
+                case 2:
+                    clearTerminal()
+                    continue
+                case 3:
+                    previousState = state
+                    state = 'favorites'
+                    clearTerminal()
+                
+                case _:
+                    clearTerminal()
         case 'recent': 
             #Have the screen display the contents of the stack
             #Have options for:

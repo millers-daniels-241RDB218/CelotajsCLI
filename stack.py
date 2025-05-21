@@ -34,7 +34,7 @@ class FixedSizeStack:
         self.maxSize = size
 
     def push(self, value):
-        if len(self.Stack)>= self.maxSize:
+        if len(self.stack)>= self.maxSize:
             self.stack.pop(0)
         self.stack.append(value)
 
