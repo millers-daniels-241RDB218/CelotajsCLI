@@ -77,8 +77,12 @@ class HashTable:
           return True
         except KeyError: 
           return False
+      
+    def clear(self):
+        self.table = [None] * self.capacity
+        self.size = 0
 
-    def iter(self):
+    def __iter__(self):
         for element in self.table:
           current = element
           if current:
