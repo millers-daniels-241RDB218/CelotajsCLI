@@ -1,7 +1,9 @@
 import requests
 import os
+import destination
 from hashtable import HashTable
 from stack import Stack
+
 
 URL = "https://www.celotajs.lv/lv/c/wrth" #Konstants, NEAIZTIKT
 
@@ -362,6 +364,47 @@ while(running):
         #######################
         case 'searching':
             #you do the requesst thingy
+            page = requests.get(url)
+            if page.status_code == 200:
+                print("Connected")
+                page_contents = BeautifulSoup(page.content, "html.parser")
+                celojumi = page_contents.find_all('tr', class_=['even','odd'])
+                
+                countryArray = []
+                urlArray = []
+                NosaukumuArray = []
+                
+                for section in celojumi:
+                    for tag in section.find_all('td', class_="minimalCol alignCeter"):
+                        tag.decompose()
+                    for tag in section.find_all('div', style=['margin-top: .5em; margin-bottom: .2em;', 'margin-top: 5px; float: right; text-align: center;']):
+                        tag.decompose()
+                    for tag in section.find_all('div', class_='dotdotdot-txt'):
+                        tag.decompose()
+                        
+                    for tag in section.find_all('div'):
+                        a_tag = tag.find('a', href=True)
+                        if a_tag:
+                            url = a_tag['href']
+                            urlArray.append('/'+re.sub(r'(\.\./)+', '', url))
+                        div = tag.find('div', style="float: left;")
+                        if div:
+                            countryArray.append(div.get_text(strip=True))
+                        h3 = tag.find('h3')
+                        if h3:
+                            NosaukumuArray.append(h3.get_text(strip=True))
+                for i in range(0, len(countryArray)):
+                    newDest = Destination(urlArray[i], NosaukumuArray[i], countryArray[i], 1)
+                    destinationHT.add(newDest.url, newDest)
+                    
+            randomDest = destinationHT.randomElement()
+            print(str(randomDest))
+            historyStack.push(randomDest)
+            input()
+            state = previousState
+            vlearTerminal()
+            pass   
+                    
             state = previousState
             pass
         case 'recent': 
