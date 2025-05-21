@@ -57,3 +57,13 @@ class LinkedList:
         while current:
             print(current.destination)
             current = current.next
+
+    def __str__(self):
+        current = self.head
+        returnString = ''
+        i = 0
+        while current:
+            returnString += f'{i+1})---------------------\n{self.stack[-i]}\n'
+            i += 1
+            current = current.next
+        return returnString    
