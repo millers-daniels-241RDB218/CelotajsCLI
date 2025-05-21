@@ -24,7 +24,7 @@ while(running):
         #      MAIN MENU      #
         #######################
         case 'main':
-            print('1) Meklēt\n2) Nesen skatītie\n3) Favorīti\n4) Iziet')
+            print('1) Meklēt\n2) Nesen skatītie\n3) Favorīti\n4) Favorīti\n5) Iziet')
             userInput = 0
             try:
                 userInput = int(input())
