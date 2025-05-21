@@ -7,7 +7,7 @@ Lietotājs spēj izvēlēties kategorijas ar dažādiem apskates objektiem, un p
 ## Instalācijas pamācība
 Lai varētu izmantot šo rīku, ir nepieciešamas:  
 ### Rīka pirmkods
-Tas ir pieejams šajā GitHub repozitorijā. To var lejupielādēt kā `.zip` failu, vai noklonēt ar `https://github.com/millers-daniels-241RDB218/DatuStrukturuProjekts.git` komandu terminālī.
+Tas ir pieejams šajā GitHub repozitorijā. To var lejupielādēt kā `.zip` failu, vai noklonēt ar `git@github.com:millers-daniels-241RDB218/CelotajsCLI.git` komandu terminālī.
 ### Python versija, kas ir virs 3.10
 Tā kā rīks izmanto `match` operatoru, kas tika pievienots 3.10 versijā. To var iegūt [šeit](https://www.python.org/)
 ### `requests` bibliotēka
