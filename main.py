@@ -10,12 +10,27 @@ from linkedlist import LinkedList
 
 URL = "https://www.celotajs.lv/lv/" #Konstants, NEAIZTIKT
 
+if not os.path.exists("saveData"):
+    os.makedirs("saveData")
+
+stack_path = os.path.join("saveData", "stack")
+list_path = os.path.join("saveData", "linkedList")
+
+if os.path.isfile(stack_path):
+    history = FixedSizeStack.load(stack_path)
+else:
+    history = FixedSizeStack(6)
+
+if os.path.isfile(stack_path):
+    favourite = LinkedList.load(list_path)
+else:
+    favourite = LinkedList()
+
 state = 'main'
 previousState = ''
 running = True
 destinationHT = HashTable(20)
-history = FixedSizeStack(5)
-favourite = LinkedList()
+
 firstloop= True
 repick = False
 
@@ -87,7 +102,7 @@ while(running):
 
                 case 3:
                     previousState = state
-                    url = url+ f'/{state}/heritage'
+                    url = URL + f'c/wrth/heritage'
                     clearTerminal()
                     print("Savienojas...")
                     firstloop = True
@@ -460,8 +475,16 @@ while(running):
         case 'searching':
             if firstloop:
                 destinationHT.clear()
-                page = requests.get(url)
+                try: 
+                    page = requests.get(url)
+                except requests.exceptions.Timeout:
+                    print("Lapa pašlaik nav sasniedzama!")
+                    print('Lai aizietu atpakaļ uzspiediet jebkuru pogu!')
+                    input()
+                    state = previousState
+
                 if page.status_code == 200:
+                    print("Apstrādā datus...")
                     page_contents = BeautifulSoup(page.content, "html.parser")
                     celojumi = page_contents.find_all('tr', class_=['even','odd'])
 
@@ -483,16 +506,16 @@ while(running):
                             h3 = tag.find('h3')
                             if h3:
                                 Destnosaukums = h3.get_text(strip=True)
-                            newDest = Destination(URL +re.sub(r'(\.\./)+', '', Desturl), Destcountry, Destnosaukums)
+                            newDest = Destination(URL +re.sub(r'(\.\./)+', '', Desturl), Destnosaukums, Destcountry)
                             destinationHT.add(newDest.url, newDest)
                 repick = True
                 firstloop = False
-            clearTerminal()
+                clearTerminal()
             if repick:
                 randomDest = destinationHT.randomElement()
+                history.push(randomDest)
                 repick = False
             print(str(randomDest))
-            history.push(randomDest)
             print('1) Pievienot favorītiem\n2) Cits galamērķis\n3) Atpakaļ')
 
             userInput = 0
@@ -504,11 +527,13 @@ while(running):
             match (userInput):
                 case 1:
                     if favourite.contains(randomDest):
+                        clearTerminal()
                         print('Jau tika pievienots!')
-                        pass
+                        continue
                     favourite.append(randomDest)
-                    print('Pievienots favorītiem!')
                     clearTerminal()
+                    print('Pievienots favorītiem!')
+
                 case 2:
                     repick = True
                     clearTerminal()
@@ -519,24 +544,32 @@ while(running):
                 case _:
                     clearTerminal()
         case 'recent': 
-            print(history)
+            if history.is_empty():
+                print("Nav iepriekš skatīti galamērķu!")
+            else: 
+                print(history)
             print('Lai aizietu atpakaļ uzspiediet jebkuru pogu!')
             input()
             state = previousState
             clearTerminal()
         
         case 'favorites':
-            print(favourite)
+            if favourite.empty():
+                print("Nav neviena favorīta!")
+            else:
+                print(favourite)
             print('Lai aizietu atpakaļ uzspiediet jebkuru pogu!')
             input()
             state = previousState
             clearTerminal()
             
         case 'about':
-            print('Daniels Millers\t\t241RDB218\nToms Graudums\t\t241RDB237\nElīza Anna Jansone\t241RDB013\nLai aizietu atpakaļ uzspiediet jebkuru pogu!')
+            print('Daniels Millers\t\t241RDB218\nElīza Anna Jansone\t241RDB013\nToms Graudums\t\t241RDB237\nLai aizietu atpakaļ uzspiediet jebkuru pogu!')
             input()
             clearTerminal()
             state = previousState
 
         case 'stop':
+            history.save(stack_path)
+            favourite.save(list_path)
             running = False

@@ -1,3 +1,4 @@
+import pickle
 from node import Node
 
 class LinkedList:
@@ -44,6 +45,9 @@ class LinkedList:
         else:
             self.head = current.next
 
+    def empty(self):
+        return self.head == None
+
     def search(self, url):
         current = self.head
         while current:
@@ -58,6 +62,15 @@ class LinkedList:
             print(current.destination)
             current = current.next
 
+    def save(self, file):
+        with open(file, 'wb') as f:
+            pickle.dump(self, f)
+    
+    def load(file):
+        with open(file, 'rb') as f:
+            return pickle.load(f)
+
+    
     def __str__(self):
         current = self.head
         returnString = ''

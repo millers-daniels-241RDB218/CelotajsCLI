@@ -9,7 +9,7 @@ Lai varētu izmantot šo rīku, ir nepieciešamas:
 ### Rīka pirmkods
 Tas ir pieejams šajā GitHub repozitorijā. To var lejupielādēt kā `.zip` failu, vai noklonēt ar `git@github.com:millers-daniels-241RDB218/CelotajsCLI.git` komandu terminālī.
 ### Python versija, kas ir virs 3.10
-Tā kā rīks izmanto `match` operatoru, kas tika pievienots 3.10 versijā. To var iegūt [šeit](https://www.python.org/)
+Tā kā rīks izmanto `match` operatoru, kas tika pievienots 3.10 versijā. To var iegūt [šeit](https://www.python.org/).
 ### `requests` bibliotēka
 Tā kā rīks sazinās ar internetu, ir nepieciešama šī bibliotēka.  
 Lai to ieinstalētu, savā terminālī ieraksti:  
@@ -44,12 +44,23 @@ Tas ir implementēts izmantojot `NodeHT` objektus.
 `name`, kas satur galapunkta nosaukumu.  
 `country`, kas satur galapunkta atrašanās valsti.  
 Šis ir viens no galvenajiem objektiem, kas tiek izmantoti mūsu projektā.
-
-
+## Izmantotās bibliotēkas
+### `requests`
+Šī bibliotēka tiek izmantota savienojumam ar interneta mājaslapu.
+### `BeautifulSoup`
+Šī bibliotēka nodrošina mājaslapas datu apstrādi.
+### `os`
+Šī bibliotēka tiek izmantota, lai nodrošinātu:  
+Termināļa attīrīšau no nevajadzīgās informācijas.  
+Jaunas direktorijas izveidei.  
+Pārbaudei, vai fails eksistē direktorijā.
+### `re`  
+Šī bibliotēka nodrošina `regex`, kas tiek izmantots, lai attīrītu saites, ko iegūst no mājaslapas.
+### `pickle`  
+šī bibliotēka nodrošina `Stack` un `LinkedList` datu ierakstam failos.
 
 ## Izstrādātāji
-[Elīza Anna Jansone - 241RDB013](https://github.com/ElizaAnna)  
 [Daniels Millers - 241RDB218](https://github.com/millers-daniels-241RDB218)  
+[Elīza Anna Jansone - 241RDB013](https://github.com/ElizaAnna)  
 [Toms Graudums - 241RDB237](https://github.com/mmm-jogurts)   
-
 

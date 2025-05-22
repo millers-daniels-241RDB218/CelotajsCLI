@@ -1,3 +1,5 @@
+import pickle
+
 class Stack:
     def __init__(self):
         self.stack = []
@@ -24,7 +26,7 @@ class Stack:
     
     def __str__(self):
         returnString = ''
-        for i in range(0, len(self.stack)):
+        for i in range(1, len(self.stack)):
             returnString += f'{i})---------------------\n{self.stack[-i]}\n'
         return returnString
     
@@ -56,8 +58,18 @@ class FixedSizeStack:
     def size(self):
         return len(self.stack)
     
+    def save(self, file):
+        with open(file, 'wb') as f:
+            pickle.dump(self, f)
+
+    def load(file):
+        with open(file, 'rb') as f:
+            return pickle.load(f)
+
     def __str__(self):
         returnString = ''
-        for i in range(0,self.maxSize):
-            returnString += f'{i+1})---------------------\n{self.stack[-i]}\n'
+        if self.is_empty():
+            return returnString
+        for i in range(1, len(self.stack)):
+            returnString += f'{i})---------------------\n{self.stack[-i]}\n'
         return returnString
